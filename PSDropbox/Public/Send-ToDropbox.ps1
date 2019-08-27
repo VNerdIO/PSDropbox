@@ -42,24 +42,16 @@ Function Send-ToDropbox{
                 $headers.Add("Dropbox-API-Arg", $arg)
                 $headers.Add("Content-Type", 'application/octet-stream')
                 
-                if(Invoke-RestMethod -Uri "https://content.dropboxapi.com/2/files/upload" -Method Post -InFile $SourceFilePath -Headers $headers){
-                    Write-Output $true
-                }
-                else {
-                    Write-Output $false
-                }
+                $null = Invoke-RestMethod -Uri "https://content.dropboxapi.com/2/files/upload" -Method Post -InFile $SourceFilePath -Headers $headers
             }
             else {
-                Write-Error 'Please create the $env:DropBoxAccessToken environment variable or pass the token in the DropBoxAccessToken parameter.'
-                Write-Output $false
+                Write-Verbose 'Please create the $env:DropBoxAccessToken environment variable or pass the token in the DropBoxAccessToken parameter.'
             }
         }
 		catch{
 			$ErrorMessage = $_.Exception.Message
-			$FailedItem = $_.Exception.ItemName
 			
-			Write-Error "$FailedItem - $ErrorMessage"
-			Write-Output $false
+			Write-Warning "$ErrorMessage"
 		}
 		finally{}
 	}
