@@ -50,7 +50,7 @@ Function Send-ToDropbox{
                 }
             }
             else {
-                Write-Error 'Please create the $env:DropBoxAccessToken environment variable.'
+                Write-Error 'Please create the $env:DropBoxAccessToken environment variable or pass the token in the DropBoxAccessToken parameter.'
                 Write-Output $false
             }
         }
