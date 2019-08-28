@@ -33,7 +33,7 @@ Function Send-ToDropbox{
 	begin{}
 	process{
 		try{
-            if($env:DropBoxAccessToken){
+            if($DropBoxAccessToken){
                 $arg = '{ "path": "' + $TargetFilePath + '", "mode": "add", "autorename": true, "mute": false }'
                 $authorization = "Bearer " + $DropBoxAccessToken
 
