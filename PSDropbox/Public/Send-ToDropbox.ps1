@@ -36,7 +36,7 @@ Function Send-ToDropbox{
             if($DropBoxAccessToken){
                 $arg = '{ "path": "' + $TargetFilePath + '", "mode": "add", "autorename": true, "mute": false }'
                 $authorization = "Bearer " + $DropBoxAccessToken
-
+                Write-verbose $arg
                 $headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
                 $headers.Add("Authorization", $authorization)
                 $headers.Add("Dropbox-API-Arg", $arg)
